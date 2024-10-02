@@ -84,7 +84,8 @@
                 <tr>
                     <th scope="col">Código</th>
                     <th scope="col">Pais</th>
-                    <th scope="col">Nacionalidad</th>
+                    <th scope="col">Capital</th>
+                    
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -94,6 +95,7 @@
                         <th scope="row">{{ $pais->pais_codi }}</th>
                         <td>{{ $pais->pais_nomb }}</td>
                         <td>{{ $pais->pais_capi }}</td>
+                        
                         <td></span> Acciones </span></td>                  
                     </tr>
                 @endforeach
