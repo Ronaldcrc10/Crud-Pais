@@ -31,7 +31,10 @@ class PaisController extends Controller
      */
     public function create()
     {
-        
+        $paises= DB::table('tb_pais')
+        ->orderBy('pais_nomb')
+        ->get();
+        return view('pais.new', ['paises' =>$paises]);
     }
 
     /**
@@ -42,7 +45,17 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $pais= new Pais();
+
+        $pais->pais_nomb = $request->name;
+        $pais->pais_codi = $request->code;
+        //$pais->save();
+
+        $paises = DB::table('tb_pais')
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') // Si quieres relacionarlo con departamentos
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb') // Selecciona todos los campos de tb_pais y el nombre del departamento relacionado
+        ->get();
+        return view('pais.index', ['paises' => $paises]);
     }
 
     /**
