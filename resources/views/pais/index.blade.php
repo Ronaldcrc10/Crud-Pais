@@ -76,7 +76,7 @@
         <h1 class="text-center">Listado de Paises</h1>
         
         <!-- Botón para agregar nuevo pais -->
-        <a href="{{ route('paises.create') }}" class="btn btn-success">Agregar Pais</a>
+        <a href="" class="btn btn-success">Agregar Pais</a>
 
         <!-- Tabla de Paises -->
         <table class="table table-hover">
@@ -85,18 +85,18 @@
                     <th scope="col">Código</th>
                     <th scope="col">Pais</th>
                     <th scope="col">Capital</th>
-                    
+                    <th scope="col">Departamento</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($paises as $pais)
+            @foreach ($paises as $pais)
                     <tr>
                         <th scope="row">{{ $pais->pais_codi }}</th>
                         <td>{{ $pais->pais_nomb }}</td>
                         <td>{{ $pais->pais_capi }}</td>
+                        <td>{{ $pais->depa_nomb}}</td>
                         
-                        <td></span> Acciones </span></td>                  
                     </tr>
                 @endforeach
             </tbody>
