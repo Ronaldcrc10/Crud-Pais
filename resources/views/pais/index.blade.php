@@ -96,7 +96,16 @@
                         <td>{{ $pais->pais_nomb }}</td>
                         <td>{{ $pais->pais_capi }}</td>
                         <td>{{ $pais->depa_nomb}}</td>
-                        
+                        <td>
+                           
+                            
+                            <!-- Botón para eliminar comuna -->
+                            <form action="{{ route('paises.destroy', ['pais' => $pais->pais_codi]) }}" method='POST' style="display: inline-block">
+                                @method('delete')
+                                @csrf
+                                <input class="btn btn-danger" type="submit" value="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta comuna?')">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

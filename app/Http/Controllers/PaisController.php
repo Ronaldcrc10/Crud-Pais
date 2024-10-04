@@ -52,8 +52,8 @@ class PaisController extends Controller
         //$pais->save();
 
         $paises = DB::table('tb_pais')
-        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') // Si quieres relacionarlo con departamentos
-        ->select('tb_pais.*', 'tb_departamento.depa_nomb') // Selecciona todos los campos de tb_pais y el nombre del departamento relacionado
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') 
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb') 
         ->get();
         return view('pais.index', ['paises' => $paises]);
     }
@@ -100,6 +100,13 @@ class PaisController extends Controller
      */
     public function destroy($id)
     {
+        $pais = Pais::find($id);
+        $pais->delete();
         
+        $paises = DB::table('tb_pais')
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') 
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb') 
+        ->get();
+        return view('pais.index', ['paises' => $paises]);
     }
 }
