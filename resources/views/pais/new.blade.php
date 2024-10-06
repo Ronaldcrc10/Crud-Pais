@@ -68,13 +68,13 @@
                 <input type="text" required class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="Nombre del pais">
             </div>
 
-            <!-- Pais -->
+            <!-- Departamento -->
             <div class="mb-3">
-                <label for="Pais" class="form-label">Pais</label>
-                <select class="form-select" id="Pais" name="code" required>
+                <label for="Departamento" class="form-label">Departamento</label>
+                <select class="form-select" id="Departamento" name="code" required>
                     <option selected disabled value="">Selecciona un pais</option>
-                    @foreach ($paises as $pais)
-                        <option value="{{ $pais->pais_codi }}">{{ $pais->pais_nomb }}</option>
+                    @foreach ($departamentos as $departamento)
+                        <option value="{{ $departamento->depa_codi }}">{{ $departamento->depa_nomb }}</option>
                     @endforeach
                 </select>
             </div>

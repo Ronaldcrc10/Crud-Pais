@@ -32,10 +32,10 @@ class PaisController extends Controller
      */
     public function create()
     {
-        $paises= DB::table('tb_pais')
-        ->orderBy('pais_nomb')
+        $departamentos= DB::table('tb_departamento')
+        ->orderBy('depa_nomb')
         ->get();
-        return view('pais.new', ['paises' =>$paises]);
+        return view('pais.new', ['departamentos' =>$departamentos]);
     }
 
     /**
@@ -49,12 +49,12 @@ class PaisController extends Controller
         $pais= new Pais();
 
         $pais->pais_nomb = $request->name;
-        $pais->pais_codi = $request->code;
-        //$pais->save();
+        $pais->depa_capi = $request->code;
+        //$pais->save(); me genera error i dont why :(
 
         $paises = DB::table('tb_pais')
-        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') 
-        ->select('tb_pais.*', 'tb_departamento.depa_nomb') 
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi')
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb')
         ->get();
         return view('pais.index', ['paises' => $paises]);
     }
@@ -78,12 +78,7 @@ class PaisController extends Controller
      */
     public function edit($id)
     {
-        $pais = Pais::find($id);
-        $paises = DB::table('tb_pais')
-        ->orderBy('pais_nomb')
-        ->get();
-        
-        return view('pais.edit', ['pais' => $pais,'paises' => $paises]);
+       
     }
 
     /**
@@ -95,17 +90,7 @@ class PaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pais = Pais::find($id);
         
-        $pais->pais_nomb = $request->name;
-        $pais->depa_codi =$request->code;
-        $pais->save();
-        
-        $paises = DB::table('tb_pais')
-        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') 
-        ->select('tb_pais.*', 'tb_departamento.depa_nomb') 
-        ->get();
-        return view('pais.index', ['paises' => $paises]);
     }
 
     /**
@@ -116,13 +101,6 @@ class PaisController extends Controller
      */
     public function destroy($id)
     {
-        $pais = Pais::find($id);
-        $pais->delete();
-        
-        $paises = DB::table('tb_pais')
-        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') 
-        ->select('tb_pais.*', 'tb_departamento.depa_nomb') 
-        ->get();
-        return view('pais.index', ['paises' => $paises]);
+       
     }
 }
