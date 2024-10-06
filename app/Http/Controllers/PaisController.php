@@ -78,7 +78,12 @@ class PaisController extends Controller
      */
     public function edit($id)
     {
-       
+        $pais = Pais::find($id);
+        $departamentos = DB::table('tb_departamento')
+        ->orderBy('depa_nomb')
+        ->get();
+        
+        return view('pais.edit', ['pais' => $pais,'departamentos' => $departamentos]);
     }
 
     /**
@@ -89,8 +94,18 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        
+    {   
+        $pais = Pais::find($id);
+
+        $pais->pais_nomb = $request->name;
+        $pais->depa_capi = $request->code;
+        $pais->save();
+
+        $paises = DB::table('tb_pais')
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi')
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb')
+        ->get();
+        return view('pais.index', ['paises' => $paises]);
     }
 
     /**

@@ -95,7 +95,8 @@
                         <td>{{ $pais->pais_nomb }}</td>
                         <td>{{ $pais->depa_nomb }}</td>               
                         <td>
-                            
+                            <!-- Botón para editar comuna -->
+                            <a href="{{ route('paises.edit',['pais' =>$pais->pais_codi]) }}" class="btn btn-info">Editar</a>
                             
                             <!-- Botón para eliminar comuna -->
                             <form action="{{ route('paises.destroy', ['pais' => $pais->pais_codi]) }}" method='POST' style="display: inline-block">

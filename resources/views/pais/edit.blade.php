@@ -76,14 +76,14 @@
                 <input type="text" class="form-control" id="name" name="name" required value="{{ $pais->pais_nomb }}" placeholder="Escriba el nombre del pais">
             </div>
 
-            <!-- Selección de pais -->
+            <!-- Selección de departamento -->
             <div class="mb-3">
                 <label for="Departamento" class="form-label">Departamento</label>
                 <select class="form-select" id="Departamento" name="code" required>
                     <option selected disabled value="">Elige una opción</option>
-                    @foreach ($paises as $pais)
-                        <option value="{{ $pais->pais_codi }}" {{ $pais->pais_codi == $pais->pais_nomb ? 'selected' : '' }}>
-                            {{ $pais->pais_nomb }}
+                    @foreach ($departamentos as $departamento)
+                        <option value="{{ $departamento->depa_codi }}" {{ $departamento->pais_codi == $pais->pais_codi ? 'selected' : '' }}>
+                            {{ $departamento->depa_nomb }}
                         </option>
                     @endforeach
                 </select>
