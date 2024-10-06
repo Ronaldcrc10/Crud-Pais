@@ -15,7 +15,13 @@ class PaisController extends Controller
      */
     public function index()
     {
-        $paises = Pais::all();
+        //$paises = Pais::all();
+
+        $paises = DB::table('tb_pais')
+        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi')
+        ->select('tb_pais.*', 'tb_departamento.depa_nomb')
+        ->get();
+
         return view('pais.index', ['paises' => $paises]);
     }
 
