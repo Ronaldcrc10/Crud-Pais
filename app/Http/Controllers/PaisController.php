@@ -15,12 +15,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        $paises = DB::table('tb_pais')
-        ->join('tb_departamento', 'tb_pais.pais_codi', '=', 'tb_departamento.pais_codi') // Si quieres relacionarlo con departamentos
-        ->select('tb_pais.*', 'tb_departamento.depa_nomb') // Selecciona todos los campos de tb_pais y el nombre del departamento relacionado
-        ->get();
-
-        // Retornar la vista pais.index con los datos de los países
+        $paises = Pais::all();
         return view('pais.index', ['paises' => $paises]);
     }
 

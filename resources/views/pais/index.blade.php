@@ -76,15 +76,14 @@
         <h1 class="text-center">Listado de Paises</h1>
         
         <!-- Botón para agregar nuevo pais -->
-        <a href="{{ route('paises.create') }}" class="btn btn-success">Agregar Pais</a>
+        <a href="" class="btn btn-success">Agregar Pais</a>
 
         <!-- Tabla de Paises -->
         <table class="table table-hover">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Código</th>
-                    <th scope="col">Pais</th>
-                    <th scope="col">Capital</th>
+                    <th scope="col">Pais</th>                    
                     <th scope="col">Departamento</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -94,19 +93,8 @@
                     <tr>
                         <th scope="row">{{ $pais->pais_codi }}</th>
                         <td>{{ $pais->pais_nomb }}</td>
-                        <td>{{ $pais->pais_capi }}</td>
-                        <td>{{ $pais->depa_nomb}}</td>
-                        <td>
-                           <!-- Botón para editar comuna -->
-                           <a href="{{ route('paises.edit',['pais' =>$pais->pais_codi]) }}" class="btn btn-info">Editar</a>
-                            
-                            <!-- Botón para eliminar comuna -->
-                            <form action="{{ route('paises.destroy', ['pais' => $pais->pais_codi]) }}" method='POST' style="display: inline-block">
-                                @method('delete')
-                                @csrf
-                                <input class="btn btn-danger" type="submit" value="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta comuna?')">
-                            </form>
-                        </td>
+                        <td>{{ $pais->depa_nomb }}</td>                        
+                       
                     </tr>
                 @endforeach
             </tbody>
